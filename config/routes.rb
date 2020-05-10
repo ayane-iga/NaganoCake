@@ -12,16 +12,19 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-    get 'end_users/mypage' => 'end_users#show'
-  get 'end_users/mypage/edit' => 'end_users#edit'
-  patch 'end_users/mypage' => 'end_users#update'
-  get 'end_users/confirm' => 'end_users#confirm'
-  put "/end_users/confirm" => "end_users#withdraw"
+   get 'end_users/mypage' => 'end_users#show'
+   get 'end_users/mypage/edit' => 'end_users#edit'
+   patch 'end_users/mypage' => 'end_users#update'
+   get 'end_users/confirm' => 'end_users#confirm'
+   put "/end_users/confirm" => "end_users#withdraw"
+   resources :items,only:[:index,:show]
   end
 
   namespace :admin do
     resources :end_users
     get '/top' => 'top#top'
+    resources :genres, only:[:new,:index,:create,:edit,:update]
+    resources :items
   end
 
   root to: 'public/items#top'

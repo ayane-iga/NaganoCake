@@ -1,0 +1,33 @@
+<div class="container">
+
+<h3>商品一覧</h3>
+
+<%=link_to "商品追加", new_admin_item_path,class:"btn btn-success" %>
+
+<table class="table">
+	<tr>
+		<th>商品ID</th>
+		<th>商品名</th>
+		<th>税抜価格</th>
+		<th>ジャンル</th>
+		<th>ステータス</th>
+	</tr>
+
+	<% @items.each do |item| %>
+	<tr>
+		<td><%=item.id %></td>
+		<td><%=item.name %></td>
+		<td><%=item.tax_free_price %></td>
+		<td><%=item.genre.name %></td>
+		<td>
+			<% if item.is_valid %>
+			<p>販売中</p>
+			<% else %>
+			<p>販売停止中</p>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+</div>

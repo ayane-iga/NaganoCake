@@ -26,7 +26,7 @@ class Public::SessionsController < Devise::SessionsController
 
    def reject_user
     @end_user = EndUser.find_by(email: params[:end_user][:email].downcase)#まずデータが存在するか見る
-    if  @end_user　#もしあったら
+    if  @end_user #もしあったら
       if (@end_user.valid_password?(params[:end_user][:password]) && (@end_user.active_for_authentication? == false))
         #（前半）入力されたパスワードと拾ってきたパスワード（名前も）があってるか
         #（後半）userモデルに定義したやつ（退会していないかどうか。falseが退会している）
