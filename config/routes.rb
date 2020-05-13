@@ -18,6 +18,9 @@ Rails.application.routes.draw do
    get 'end_users/confirm' => 'end_users#confirm'
    put "/end_users/confirm" => "end_users#withdraw"
    resources :items,only:[:index,:show]
+   delete "/cart_items/destroy_all" => 'cart_items#destroy_all'
+   resources :cart_items, only:[:index, :update, :destroy,:create]
+
   end
 
   namespace :admin do

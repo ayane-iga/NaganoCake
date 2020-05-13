@@ -5,8 +5,31 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# coding: utf-8
+
 
 Admin.create!(
 	email: "a@a",
 	password: "igasaki"
 	)
+
+Item.create(
+	name: "いちごのショートケーキ",
+	text: "いちごがたくさんある",
+	is_valid: true,
+	tex_free_price: "350",
+	 )
+Item.create(
+	name: "チョコレート",
+	text: "ビターです",
+	is_valid: true,
+	tax_free_price: "500",
+	)
+Genre.create(
+	name: "ケーキ"
+	)
+Genre.create(
+	name: "焼き菓子"
+	)
+Genre.create(
+	name: "チョコレート")
