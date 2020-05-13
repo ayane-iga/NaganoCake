@@ -32,7 +32,6 @@ def create
 		cart_item.update(amount: newamount)
 	else
 	cart_item = CartItem.new(cart_item_params)
-	binding.pry
 	cart_item.save
 	end
 	redirect_to cart_items_path

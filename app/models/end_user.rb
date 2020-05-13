@@ -7,8 +7,6 @@ class EndUser < ApplicationRecord
   validates :post_code, presence:true
   validates :address, presence:true
   validates :phone_number, presence:true
-  attachment :item_image
-
 
   has_many :cart_items
 

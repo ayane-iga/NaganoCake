@@ -2,7 +2,7 @@
 
 <h3>商品詳細</h3>
 
-<%= attachment_image_tag @item, :item_image %>
+<%= attachment_image_tag @item, :item_image ,fallback: "142_refileDownloadImage.png",:size=>'150x150'%>
 <%= @item.name %>
 <%= @item.text %>
 

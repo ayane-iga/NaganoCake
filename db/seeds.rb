@@ -13,18 +13,6 @@ Admin.create!(
 	password: "igasaki"
 	)
 
-Item.create(
-	name: "いちごのショートケーキ",
-	text: "いちごがたくさんある",
-	is_valid: true,
-	tex_free_price: "350",
-	 )
-Item.create(
-	name: "チョコレート",
-	text: "ビターです",
-	is_valid: true,
-	tax_free_price: "500",
-	)
 Genre.create(
 	name: "ケーキ"
 	)
@@ -33,3 +21,18 @@ Genre.create(
 	)
 Genre.create(
 	name: "チョコレート")
+
+Item.create!(
+	name: "いちごのショートケーキ",
+	text: "いちごがたくさんある",
+	is_valid: true,
+	tax_free_price: "350",
+	genre_id: 1
+	 )
+Item.create!(
+	name: "チョコレート",
+	text: "ビターです",
+	is_valid: true,
+	tax_free_price: "500",
+	genre_id: 3
+	)

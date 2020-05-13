@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :genre_id
       t.string :name
       t.text :text
-      t.boolean :is_valid
+      t.boolean :is_valid, default: true
       t.integer :tax_free_price
       t.string :item_image_id
 
