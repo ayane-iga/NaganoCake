@@ -1,23 +1,23 @@
 class Public::EndUsersController < ApplicationController
 
-def show
-end
-
-def edit
-	@end_user = EndUser.find(current_end_user.id)
-end
-
-def update
-	@end_user = EndUser.find(current_end_user.id)
-	if @end_user.update(end_user_params)
-		redirect_to end_users_mypage_path
-	else
-		render :edit
+	def show
 	end
-end
 
-def withdraw
-	@end_user = EndUser.find(current_end_user.id)
+	def edit
+		@end_user = EndUser.find(current_end_user.id)
+	end
+
+	def update
+		@end_user = EndUser.find(current_end_user.id)
+		if @end_user.update(end_user_params)
+			redirect_to end_users_mypage_path
+		else
+			render :edit
+		end
+	end
+
+	def withdraw
+		@end_user = EndUser.find(current_end_user.id)
 	#is_validカラムにフラグを立てる（デフォルトがtrue)
 	@end_user.update(is_valid: false)
 	#ログアウトさせる

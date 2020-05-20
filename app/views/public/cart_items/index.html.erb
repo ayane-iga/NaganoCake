@@ -1,61 +1,61 @@
 <div class="container">
 
-<h3>ショッピングカート</h3>
+	<h3>ショッピングカート</h3>
 
-<%=link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, data: {confirm: "空にしますか？"} %>
+	<%=link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, data: {confirm: "空にしますか？"} %>
 
-<table class="table">
-<tr>
-	<th></th>
-	<th>商品名</th>
-	<th>単価（税込）</th>
-	<th>数量</th>
-	<th>小計</th>
-	<th></th>
-</tr>
+	<table class="table">
+		<tr>
+			<th></th>
+			<th>商品名</th>
+			<th>単価（税込）</th>
+			<th>数量</th>
+			<th>小計</th>
+			<th></th>
+		</tr>
 
-<% @sum = 0 %>
-<% @cart_items.each do |cart_item| %>
-<tr>
-	<td>
-		<%= attachment_image_tag cart_item.item, :item_image,fallback: "142_refileDownloadImage.png",:size=>'150x150'%>
-	</td>
-	<td>
-		<%= cart_item.item.name %>
-	</td>
-	<td>
-		<%= (cart_item.item.tax_free_price * 1.1) .round %>
-	</td>
-	<td>
-		<%=form_for(cart_item) do |f| %>
-		<%= f.number_field :amount %>
-		<%= f.submit "編集" %>
+		<% @sum = 0 %>
+		<% @cart_items.each do |cart_item| %>
+		<tr>
+			<td>
+				<%= attachment_image_tag cart_item.item, :item_image,fallback: "142_refileDownloadImage.png",:size=>'150x150'%>
+			</td>
+			<td>
+				<%= cart_item.item.name %>
+			</td>
+			<td>
+				<%= (cart_item.item.tax_free_price * 1.1) .round %>
+			</td>
+			<td>
+				<%=form_for(cart_item) do |f| %>
+				<%= f.number_field :amount %>
+				<%= f.submit "編集" %>
+				<% end %>
+			</td>
+			<td>
+				<%= ((cart_item.item.tax_free_price * 1.1) * cart_item.amount).round %>
+			</td>
+			<td>
+				<%= link_to "削除する", cart_item_path(cart_item.id), method: :delete %>
+			</td>
+			<td>
+				<% @sum += (cart_item.item.tax_free_price * 1.1) * cart_item.amount %>
+			</td>
+		</tr>
 		<% end %>
-	</td>
-	<td>
-		<%= ((cart_item.item.tax_free_price * 1.1) * cart_item.amount).round %>
-	</td>
-	<td>
-		<%= link_to "削除する", cart_item_path(cart_item.id), method: :delete %>
-	</td>
-	<td>
-		<% @sum += (cart_item.item.tax_free_price * 1.1) * cart_item.amount %>
-	</td>
-</tr>
-<% end %>
 
-</table>
+	</table>
 
-<div class=sum>
-	<p>合計金額</p>
-	<p><%= @sum.round %>円</p>
-</div>
+	<div class=sum>
+		<p>合計金額</p>
+		<p><%= @sum.round %>円</p>
+	</div>
 
-<div class="col-xs-offset-8 col-xs-4">
-<%= link_to "情報入力へ進む", class:"btn btn-primary" %>
-</div>
+	<div class="col-xs-offset-8 col-xs-4">
+		<%= link_to "情報入力へ進む",new_order_path, class:"btn btn-primary" %>
+	</div>
 
-<%= link_to "買い物を続ける", root_path %>
+	<%= link_to "買い物を続ける", root_path %>
 
 
 </div>

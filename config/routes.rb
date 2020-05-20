@@ -20,6 +20,11 @@ Rails.application.routes.draw do
    resources :items,only:[:index,:show]
    delete "/cart_items/destroy_all" => 'cart_items#destroy_all'
    resources :cart_items, only:[:index, :update, :destroy,:create]
+   post "orders/confirm" => "orders#confirm"
+   get "orders/complete" => "orders#complete"
+   resources :orders, only:[:new, :create, :index, :show]
+   resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+
 
   end
 
@@ -28,6 +33,8 @@ Rails.application.routes.draw do
     get '/top' => 'top#top'
     resources :genres, only:[:new,:index,:create,:edit,:update]
     resources :items
+    resources :orders, only:[:index,:show,:update]
+    resources :order_details, only:[:update]
   end
 
   root to: 'public/items#top'

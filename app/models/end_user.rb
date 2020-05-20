@@ -9,6 +9,8 @@ class EndUser < ApplicationRecord
   validates :phone_number, presence:true
 
   has_many :cart_items
+  has_many :addresses
+  has_many :orders
 
    def active_for_authentication?
    	super && (self.is_valid == true )
