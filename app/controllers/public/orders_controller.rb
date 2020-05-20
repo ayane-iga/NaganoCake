@@ -9,6 +9,7 @@ before_action :baria_end_user, only: [:new,:confirm,:create]
 	end
 
 	def confirm
+
 		@cart_items = current_end_user.cart_items
 		@order = Order.new
 		@order.payment_method = params[:order][:payment_method].to_i
@@ -28,6 +29,9 @@ before_action :baria_end_user, only: [:new,:confirm,:create]
 
 		elsif
 			params[:address] == "2"
+			if params[:order][:post_code].empty? || params[:order][:address].empty? || params[:order][:destination].empty?
+				redirect_to cart_items_path
+			end
 			@order.post_code = params[:order][:post_code]
 			@order.address = params[:order][:address]
 			@order.destination = params[:order][:destination]
@@ -58,6 +62,13 @@ before_action :baria_end_user, only: [:new,:confirm,:create]
 			order_detail.save!
 			#binding.pry
 		end
+
+		subaddress = Address.new
+		subaddress.end_user_id = current_end_user.id
+		subaddress.post_code = @order.post_code
+		subaddress.address = @order.address
+		subaddress.destination = @order.destination
+		subaddress.save
 
 		@cart_items.destroy_all
 

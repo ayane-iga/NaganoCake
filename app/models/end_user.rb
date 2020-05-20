@@ -12,6 +12,7 @@ class EndUser < ApplicationRecord
   has_many :addresses
   has_many :orders
 
+
    def active_for_authentication?
    	super && (self.is_valid == true )
    	#superはdeviseの元々の認証機能を継承してる
