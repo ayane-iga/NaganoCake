@@ -24,6 +24,7 @@ Rails.application.routes.draw do
    get "orders/complete" => "orders#complete"
    resources :orders, only:[:new, :create, :index, :show]
    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+   resources :genres, only:[:show]
 
 
   end

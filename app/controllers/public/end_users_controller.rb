@@ -14,7 +14,6 @@ class Public::EndUsersController < ApplicationController
 		else
 			render :edit
 		end
-	end
 
 	def withdraw
 		@end_user = EndUser.find(current_end_user.id)

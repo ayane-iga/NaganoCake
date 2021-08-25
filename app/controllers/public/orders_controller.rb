@@ -59,8 +59,9 @@ before_action :baria_end_user, only: [:new,:confirm,:create]
 			order_detail.amount = cart_item.amount
 			order_detail.price = cart_item.item.tax_free_price * 1.1
 			order_detail.order_id = @order.id
-			order_detail.save!
+			order_detail.save
 			#binding.pry
+			#カートはなくなるから!!(伝票)
 		end
 
 		subaddress = Address.new

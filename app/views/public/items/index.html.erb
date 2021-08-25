@@ -1,5 +1,13 @@
 <div class="container">
 
+<% @genres.each do |genre| %>
+
+<%= link_to genre.name, genre_path(genre) %>
+
+
+<% end %>
+
+
 <h3>商品一覧</h3>
 
 <% @items.each do |item| %>
