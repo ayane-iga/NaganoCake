@@ -1,0 +1,50 @@
+<div class="container">
+<div class="row">
+
+
+<h3>登録情報編集</h3>
+
+<%=form_for(@end_user, url:"/end_users/mypage") do |f| %>
+
+<div class="kannzi-name clearfix">
+<div class="kannzi-field">
+<h4>姓</h4>
+<%=f.text_field :last_name %>
+</div>
+<div class="kannzi-field">
+<h4>名</h4>
+<%=f.text_field :first_name %>
+</div>
+</div>
+
+<div class="kana-name clearfix">
+<div class="kana-field">
+<h4>セイ</h4>
+<%=f.text_field :kana_last_name %>
+</div>
+<div class="kana-field">
+<h4>メイ</h4>
+<%=f.text_field :kana_first_name %>
+</div>
+</div>
+
+<h4>メールアドレス</h4>
+<%=f.text_field :email %>
+
+<h4>郵便番号</h4>
+<%=f.text_field :post_code %>
+
+<h4>住所</h4>
+<%=f.text_field :address %>
+
+<h4>電話番号</h4>
+<%=f.text_field :phone_number %>
+
+<%=f.submit '編集内容を保存する' %>
+
+<% end %>
+
+<%= link_to "退会する", end_users_confirm_path, class:"btn btn-danger" %>
+
+</div>
+</div>

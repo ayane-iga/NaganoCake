@@ -1,0 +1,27 @@
+<div class="container">
+
+<% @genres.each do |genre| %>
+
+<%= link_to genre.name, genre_path(genre) %>
+
+
+<% end %>
+
+
+<h3>商品一覧</h3>
+
+<% @items.each do |item| %>
+
+<%= attachment_image_tag item, :item_image, :fill,150,150, fallback: "142_refileDownloadImage.png",:size=>'150x150' %>
+
+<%= link_to item_path(item.id) do %>
+<%= item.name %>
+<% end %>
+
+¥<%= item.tax_free_price %>
+
+<% end %>
+
+
+</div>
+</div>

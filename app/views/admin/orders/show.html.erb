@@ -1,0 +1,84 @@
+<div class="container">
+
+<h3>注文履歴詳細</h3>
+
+<div>
+<label>購入者</label>
+<%= @order.end_user.last_name %><%= @order.end_user.first_name %>
+</div>
+
+<div>
+<label>配送先</label>
+<%= @order.post_code %>
+<%= @order.address %>
+<%= @order.destination %>
+</div>
+
+<div>
+<label>支払方法</label>
+<%= @order.payment_method_i18n %>
+</div>
+
+<div>
+<label>注文ステータス</label>
+<%= form_for(@order, url:admin_order_path(@order.id)) do |f| %>
+<%= f.select :order_status, Order.order_statuses.keys.map{|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+<%= f.submit "更新" %>
+<% end %>
+
+</div>
+
+<div class="col-xs-8">
+<table class="table">
+	<tr>
+		<th>商品名</th>
+		<th>単価（税込）</th>
+		<th>数量</th>
+		<th>小計</th>
+		<th>制作ステータス</th>
+		<th></th>
+	</tr>
+
+<% @sum = 0 %>
+<% @order.order_details.each do |order_detail| %>
+	<tr>
+		<td><%= order_detail.item.name %></td>
+		<td><%= (order_detail.item.tax_free_price * 1.1).round %></td>
+		<td><%= order_detail.amount %></td>
+		<td><%= ((order_detail.item.tax_free_price * 1.1) * order_detail.amount).round %></td>
+		<td>
+			<%= form_for(order_detail, url:admin_order_detail_path(order_detail.id)) do |f| %>
+			<%= f.select :making_status, OrderDetail.making_statuses.keys.map{|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
+
+			<%= f.submit "更新" %>
+			<% end %>
+		</td>
+		<td></td>
+	</tr>
+
+	<% @sum += ((order_detail.item.tax_free_price * 1.1) * order_detail.amount).round %>
+	<% end %>
+</table>
+</div>
+
+<div class="col-xs-4">
+<table class="table">
+	<tr>
+		<th>商品合計</th>
+		<td><%= @sum %>円</td>
+	</tr>
+
+	<tr>
+		<th>送料</th>
+		<td>800円</td>
+	</tr>
+
+	<tr>
+		<th>請求金額合計</th>
+		<td><%= @sum + 800 %>円</td>
+	</tr>
+</table>
+</div>
+
+
+</div>
